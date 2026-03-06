@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+        content="Event-based visual place recognition with global-to-local feature matching.">
+  <meta name="keywords" content="Localization, event cameras, real-world deployment">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EventGeM: Global-to-Local Feature Matching for
-Event-Based Visual Place Recognition</title>
+  <title>EventGeM</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -40,6 +39,51 @@ Event-Based Visual Place Recognition</title>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+    .matrix-panel {
+      position: relative;
+      width: 100%;
+      line-height: 0;
+    }
+
+    .matrix-panel img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .matrix-marker {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background: rgba(255, 56, 96, 0.35);
+      border-left: 1px solid rgba(255, 56, 96, 0.95);
+      border-right: 1px solid rgba(255, 56, 96, 0.95);
+      transform: translateX(-5px);
+      pointer-events: none;
+    }
+
+    .result-figure {
+      margin: 0;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #f5f5f5;
+      border-radius: 6px;
+    }
+
+    .result-figure img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -64,17 +108,17 @@ Event-Based Visual Place Recognition</title>
           More Research
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
+          <a class="navbar-item" href="https://github.com/Event-LAB-Team/Event-LAB">
+            Event-LAB
           </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
+          <a class="navbar-item" href="https://github.com/Yan98/Event-Camera-Data-Pre-training">
+            Event camera data pre-training
           </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
+          <a class="navbar-item" href="https://github.com/ethz-mrl/SuperEvent">
+            SuperEvent
           </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
+          <a class="navbar-item" href="https://github.com/bartn8/depthanyevent">
+            Depth AnyEvent
           </a>
         </div>
       </div>
@@ -89,48 +133,40 @@ Event-Based Visual Place Recognition</title>
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
+          <h1 class="title is-1 publication-title">EventGeM: Global-to-Local Feature Matching for
+Event-Based Visual Place Recognition</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
+              <a href="https://adamdhines.github.io">Adam D Hines</a>,</span>
             <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
+              <a href="https://gokulbnr.github.io/">Gokul B Nair</a>,</span>
             <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
-            </span>
+              <a href="https://nmarticorena.github.io/">Nicolás Marticorena</a>,</span>
             <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
+              <a href="https://michaelmilford.com/">Michael Milford</a>,</span>
             <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span>
+              <a href="https://www.tobiasfischer.info/">Tobias Fischer</a></span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
+            <span class="author-block"><a href="https://research.qut.edu.au/qcr/">QUT Centre for Robotics</a>, Queensland University of Technology
+            </span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
+              <!-- <span class="link-block">
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
                 </a>
-              </span>
+              </span> -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -140,7 +176,7 @@ Event-Based Visual Place Recognition</title>
               </span>
               <!-- Video Link. -->
               <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
@@ -150,7 +186,7 @@ Event-Based Visual Place Recognition</title>
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/AdamDHines/EventGeM"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -158,15 +194,6 @@ Event-Based Visual Place Recognition</title>
                   <span>Code</span>
                   </a>
               </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
             </div>
 
           </div>
@@ -180,76 +207,15 @@ Event-Based Visual Place Recognition</title>
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
+        <source src="./static/videos/eventgem.mp4"
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        EventGeM combines global and local features to achieve state-of-the-art performance on event-based visual place recognition.
       </h2>
     </div>
   </div>
 </section>
-
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -258,50 +224,29 @@ Event-Based Visual Place Recognition</title>
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p>
+      <p>
+      Dynamic vision sensors, also known as event cameras, are rapidly rising in popularity for robotic and computer vision tasks due to their sparse activation and high-temporal resolution. 
+      Event cameras have been used in robotic navigation and localization tasks where accurate positioning needs to occur on small and frequent 
+      time scales, or when energy concerns are paramount. 
+      </p>
+      <p>
+      In this work, we present EventGeM, a state-of-the-art global to local feature fusion 
+      pipeline for event-based Visual Place Recognition. We use a pre-trained vision transformer (ViT-S/16) backbone to obtain global feature 
+      patch for initial match predictions embeddings from event histogram images. Local feature keypoints were then detected using a pre-trained 
+      MaxViT backbone for 2D-homography based re-ranking with RANSAC. For additional re-ranking refinement, we subsequently used a pre-trained 
+      vision foundation model for depth estimation to compare structural similarity between references and queries. 
+      </p>
+
+      <p>
+      Our work performs state-of-the-art localization when compared to the best currently available event-based place recognition method across several benchmark 
+      datasets and lighting conditions all whilst being fully capable of running in real-time when deployed across a variety of compute 
+      architectures. We demonstrate the capability of EventGeM in a real-world deployment on a robotic platform for online localization using event 
+      streams directly from an event camera.
+      </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
-  </div>
 </section>
 
 
@@ -313,32 +258,28 @@ Event-Based Visual Place Recognition</title>
       <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
+          <h2 class="title is-3">EventGeM</h2>
           <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
+            Our EventGeM pipeline provides initial place predicitions using global features from a 
+            <a href="https://github.com/Yan98/Event-Camera-Data-Pre-training">vision transformer backbone</a> with generalized mean pooling (GeM)
+           with local feature re-ranking and RANSAC from <a href="https://github.com/ethz-mrl/SuperEvent">keypoint descriptors</a>.
           </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
+          <img id="eventgem" src="./static/images/eventgem.png" alt="EventGeM" height="100%">
         </div>
       </div>
       <!--/ Visual Effects. -->
 
       <!-- Matting. -->
       <div class="column">
-        <h2 class="title is-3">Matting</h2>
+        <h2 class="title is-3">EventGeM-D</h2>
         <div class="columns is-centered">
           <div class="column content">
             <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
+              We can also perform additional re-ranking refinement of matches using <a href="https://github.com/bartn8/depthanyevent">
+                depth estimation</a>. Calculating a structural similarity index metric allows from depth maps improves
+                localization performance above keypoint RANSAC.
             </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
+            <img id="eventgem-d" src="./static/images/eventgem-d.png" alt="EventGeM-D" height="100%">
           </div>
 
         </div>
@@ -346,51 +287,97 @@ Event-Based Visual Place Recognition</title>
     </div>
     <!--/ Matting. -->
 
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
+<!-- Animation. -->
+<section class="section">
+  <div class="container">
+    <h3 class="title is-4">Event-based VPR benchmark</h3>
+    <div class="content has-text-justified">
+      <p>
+        We evaluate EventGeM on multiple benchmark datasets showing strong performance
+        across diverse lighting conditions and environments. Use the slider to inspect
+        each query, its location in the distance matrix, and the corresponding retrievals.
+      </p>
+    </div>
 
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
+    <div class="columns is-variable is-5">
+
+      <!-- LEFT: matrix + slider -->
+      <div class="column is-5">
+        <div class="box">
+          <div class="matrix-panel">
+            <img
+              id="matrix-image"
+              src="./static/images/matrix/distance_matrix.png"
+              alt="Distance matrix"
+            />
+            <div id="matrix-marker" class="matrix-marker"></div>
           </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
+
+          <div class="mt-4">
+            <p>
+              <strong>Query index:</strong>
+              <span id="query-index-label">0</span>
+            </p>
+            <input
+              class="slider is-fullwidth is-info"
+              id="query-slider"
+              step="1"
+              min="0"
+              max="0"
+              value="0"
+              type="range"
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: results -->
+      <div class="column is-7">
+
+        <!-- Main comparison pair -->
+        <div class="columns is-variable is-4">
+          <div class="column is-6">
+            <div class="box has-text-centered result-box">
+              <p class="is-size-6 has-text-weight-semibold mb-2">Initial Match</p>
+              <figure class="comparison-figure">
+                <img id="initial-image" alt="Initial retrieved match">
+              </figure>
+              <p id="initial-caption" class="is-size-7 mt-2"></p>
             </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
           </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
+
+          <div class="column is-6">
+            <div class="box has-text-centered result-box">
+              <p class="is-size-6 has-text-weight-semibold mb-2">Re-ranked Match</p>
+              <figure class="comparison-figure">
+                <img id="reranked-image" alt="Keypoint reranked match">
+              </figure>
+              <p id="reranked-caption" class="is-size-7 mt-2"></p>
+            </div>
           </div>
         </div>
-        <br/>
+
+        <!-- Query image -->
+        <div class="box has-text-centered mt-4">
+          <p class="is-size-6 has-text-weight-semibold mb-2">Input Query</p>
+          <figure class="query-figure">
+            <img id="query-image" alt="Input query">
+          </figure>
+          <p id="query-caption" class="is-size-7 mt-2"></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
         <!--/ Interpolating. -->
 
         <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
+        <h3 class="title is-4">Runtime efficiency</h3>
         <div class="content has-text-justified">
           <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
+            EventGeM runs for real-time VPR whilst performing substantially better than current baseline methods. By combining
+            our initial global place prediction with keypoint re-ranking, we optimize performance and runtime efficiency.
           </p>
         </div>
         <div class="content has-text-centered">
@@ -406,51 +393,34 @@ Event-Based Visual Place Recognition</title>
         </div>
         <!--/ Re-rendering. -->
 
+        <h3 class="title is-4">On-robot demonstration</h3>
+        <div class="content has-text-justified">
+          <p>
+            Integrating a Jetson Orin AGX and a DAVIS346 event camera, we demonstrate EventGeM's real-time localization capabilities 
+            in a real-world robotic deployment.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/replay.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
       </div>
     </div>
     <!--/ Animation. -->
 
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
-  </div>
-</section>
-
-
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
+    <pre><code>
+</code></pre>
   </div>
 </section>
 
@@ -486,6 +456,48 @@ Event-Based Visual Place Recognition</title>
     </div>
   </div>
 </footer>
+
+<script>
+  const NUM_QUERIES = 724;   // change this to your real number
+
+  const slider = document.getElementById("query-slider");
+  const queryIndexLabel = document.getElementById("query-index-label");
+  const matrixMarker = document.getElementById("matrix-marker");
+
+  const queryImage = document.getElementById("query-image");
+  const initialImage = document.getElementById("initial-image");
+  const rerankedImage = document.getElementById("reranked-image");
+
+  function padIndex(i, width = 4) {
+    return String(i).padStart(width, "0");
+  }
+
+  function updateMarker(idx, total) {
+    const fraction = total > 1 ? idx / (total - 1) : 0;
+    matrixMarker.style.left = `${fraction * 100}%`;
+  }
+
+  function updateView(idx) {
+    const s = padIndex(idx);
+
+    queryIndexLabel.textContent = idx;
+
+    queryImage.src = `./static/images/query/query_${s}.png`;
+    initialImage.src = `./static/images/initial/initial_${s}.png`;
+    rerankedImage.src = `./static/images/reranked/reranked_${s}.png`;
+
+    updateMarker(idx, NUM_QUERIES);
+  }
+
+  slider.max = NUM_QUERIES - 1;
+  slider.value = 0;
+
+  slider.addEventListener("input", (e) => {
+    updateView(Number(e.target.value));
+  });
+
+  updateView(0);
+</script>
 
 </body>
 </html>
