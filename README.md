@@ -1,4 +1,4 @@
-# Nerfies
+# EventGeM
 
 This is the repository that contains source code for the [EventGeM website](https://eventgemvpr.github.io).
 
