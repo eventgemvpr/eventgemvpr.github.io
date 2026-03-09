@@ -4,7 +4,14 @@ This is the repository that contains source code for the [EventGeM website](http
 
 If you find Nerfies useful for your work please cite:
 ```
-@misc{
+@misc{hines2026eventgem,
+      title={EventGeM: Global-to-Local Feature Matching for Event-Based Visual Place Recognition}, 
+      author={Adam D. Hines and Gokul B. Nair and Nicolás Marticorena and Michael Milford and Tobias Fischer},
+      year={2026},
+      eprint={2603.05807},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2603.05807}, 
 }
 ```
 
